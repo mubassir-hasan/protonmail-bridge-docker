@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  protonmail-bridge:
+    build: .
+    container_name: protonmail-bridge
+    volumes:
+      - protonmail:/root
+    ports:
+      - "127.0.0.1:1025:25/tcp"
+      - "127.0.0.1:1143:143/tcp"
+    restart: unless-stopped
+
+networks: 
+  default: 
+    name: protonmail-bridge-network
+volumes:
+  protonmail:
