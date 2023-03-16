@@ -1,7 +1,9 @@
 version: '3.9'
 services:
   protonmail-bridge:
-    build: .
+    build: 
+      context: ./deb
+      dockerfile: Dockerfile
     container_name: protonmail-bridge
     volumes:
       - protonmail:/root

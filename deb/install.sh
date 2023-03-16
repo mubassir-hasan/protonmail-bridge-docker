@@ -29,6 +29,8 @@ cd ../
 # Install protonmail bridge
 apt-get install -y --no-install-recommends ./deb/${DEB_FILE}
 
+
+
 # Cleanup
 apt-get purge -y wget binutils xz-utils
 apt-get autoremove -y
