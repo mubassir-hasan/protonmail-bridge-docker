@@ -10,7 +10,7 @@ apt-get update
 apt-get install -y --no-install-recommends socat pass ca-certificates
 
 # Build time dependencies
-apt-get install -y wget binutils xz-utils
+apt-get install -y wget binutils xz-utils dbus-x11
 
 # Repack deb (remove unnecessary dependencies)
 mkdir deb
