@@ -8,8 +8,8 @@ services:
     volumes:
       - protonmail:/root
     ports:
-      - "127.0.0.1:1025:25/tcp"
-      - "127.0.0.1:1143:143/tcp"
+      - "127.0.0.1:1025:1025"
+      - "127.0.0.1:1143:1143"
     restart: unless-stopped
 
 networks: 
