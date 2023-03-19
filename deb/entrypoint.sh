@@ -42,8 +42,8 @@ else
 
     # Start protonmail
     # Fake a terminal, so it does not quit because of EOF...
-    rm -f faketty
-    mkfifo faketty
-    cat faketty | protonmail-bridge --noninteractive
-
+    #rm -f faketty
+    #mkfifo faketty
+    #cat faketty | protonmail-bridge --noninteractive
+    protonmail-bridge --noninteractive
 fi
