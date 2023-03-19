@@ -1,8 +1,9 @@
 FROM ubuntu:focal
 LABEL maintainer="Xiaonan Shen <s@sxn.dev>"
 
-#EXPOSE 1025/tcp
-#EXPOSE 1143/tcp
+EXPOSE 25/tcp
+EXPOSE 143/tcp
+
 
 WORKDIR /protonmail
 
