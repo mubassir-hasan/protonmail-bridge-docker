@@ -30,7 +30,7 @@ if [[ $1 == init ]]; then
     pass init pass-key
 
     # Login
-    protonmail-bridge --noninteractive
+    protonmail-bridge --cli
 
 else
 
