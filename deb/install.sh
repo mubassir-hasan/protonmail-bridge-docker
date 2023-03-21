@@ -11,7 +11,7 @@ apt-get install -y --no-install-recommends socat pass  debsig-verify debian-keyr
 
 # Build time dependencies
 apt-get install -y wget 
-
+8 | 4 | apt-get install gnome-keyring -y
 mkdir  deb
 cd deb
 wget -q https://protonmail.com/download/bridge_pubkey.gpg
@@ -26,7 +26,7 @@ cp bridge.pol /etc/debsig/policies/E2C75D68E6234B07
 wget -q https://protonmail.com/download/bridge/${DEB_FILE}
 debsig-verify ${DEB_FILE}
 
-gdebi ${DEB_FILE}
+gdebi ${DEB_FILE} -n
 
 SERVICE_NAME="protonmail-service"
 
@@ -61,7 +61,7 @@ else
 fi
 
 # Cleanup
-apt-get purge -y wget binutils xz-utils
+apt-get purge -y wget 
 apt-get autoremove -y
 rm -rf /var/lib/apt/lists/*
 rm -rf deb
