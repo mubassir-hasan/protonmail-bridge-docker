@@ -7,7 +7,7 @@ DEB_FILE=protonmail-bridge_${VERSION}_amd64.deb
 
 # Install dependents
 apt-get update
-apt-get install -y --no-install-recommends socat pass  debsig-verify debian-keyring gdebi-core
+apt-get install -y --no-install-recommends socat   debsig-verify debian-keyring gdebi-core ncat #pass
 
 # Build time dependencies
 apt-get install -y wget dbus-x11
