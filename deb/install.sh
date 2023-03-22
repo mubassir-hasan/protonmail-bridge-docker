@@ -28,6 +28,7 @@ debsig-verify ${DEB_FILE}
 
 gdebi ${DEB_FILE} -n
 
+gpg --batch --passphrase '' --quick-gen-key 'ProtonMail Bridge' default default never
 
 # Cleanup
 apt-get purge -y wget 
