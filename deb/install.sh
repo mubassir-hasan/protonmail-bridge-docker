@@ -10,7 +10,7 @@ apt-get update
 apt-get install -y --no-install-recommends socat pass  debsig-verify debian-keyring gdebi-core
 
 # Build time dependencies
-apt-get install -y wget 
+apt-get install -y wget dbus-x11
 8 | 4 | apt-get install gnome-keyring -y
 mkdir  deb
 cd deb
@@ -28,8 +28,7 @@ debsig-verify ${DEB_FILE}
 
 gdebi ${DEB_FILE} -n
 
-gpg --batch --passphrase '' --quick-gen-key 'ProtonMail Bridge' default default never
-pass init "ProtonMail Bridge"
+
 
 # Cleanup
 apt-get purge -y wget 

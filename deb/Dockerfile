@@ -12,5 +12,5 @@ COPY gpgparams install.sh entrypoint.sh VERSION /protonmail/
 
 # Install dependencies and protonmail bridge
 RUN bash install.sh
-
+RUN chmod +x entrypoint.sh
 ENTRYPOINT ["bash", "entrypoint.sh"]

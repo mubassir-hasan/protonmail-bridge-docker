@@ -26,8 +26,8 @@ if [[ $1 == init ]]; then
     # done
 
     # Initialize pass
-    gpg --generate-key --batch /protonmail/gpgparams
-    pass init pass-key
+    gpg --batch --passphrase '' --quick-gen-key 'ProtonMail Bridge' default default never
+    pass init "ProtonMail Bridge"
 
     # Login
     protonmail-bridge --cli
