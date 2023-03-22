@@ -8,9 +8,11 @@ services:
     volumes:
       - protonmail-store:/root
     ports:
-      - "127.0.0.1:25:25"
-      - "127.0.0.1:143:143"
+      - "127.0.0.1:1025:25"
+      - "127.0.0.1:1143:143"
     restart: unless-stopped
+    stdin_open: true
+    tty: true
 
 networks: 
   default: 
