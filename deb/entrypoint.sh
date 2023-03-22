@@ -40,7 +40,8 @@ else
     socat TCP-LISTEN:25,fork TCP:127.0.0.1:1025 &
     #socat TCP-LISTEN:143,fork TCP:127.0.0.1:1143 &
     # Use socat to transfer data between the IMAP server and the local publish port
-    socat TCP4-LISTEN:143,fork SSL:127.0.0.1:1143,verify=0  EXEC:"echo 'IDLE' ; sleep 1 ; echo DONE",pty,ctty 
+    socat TCP4-LISTEN143,fork SSL:127.0.0.1:1143,verify=0 \
+    EXEC:"echo 'IDLE' ; sleep 1 ; echo DONE",pty,ctty 
     # Start protonmail
     # Fake a terminal, so it does not quit because of EOF...
     rm -f faketty
