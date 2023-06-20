@@ -23,7 +23,8 @@ wget -q https://protonmail.com/download/bridge.pol
 mkdir -p /etc/debsig/policies/E2C75D68E6234B07
 cp bridge.pol /etc/debsig/policies/E2C75D68E6234B07
 
-wget -q https://protonmail.com/download/bridge/${DEB_FILE}
+# using local file insted of live because some time live version gone missing 
+#wget -q https://protonmail.com/download/bridge/${DEB_FILE}
 debsig-verify ${DEB_FILE}
 
 gdebi ${DEB_FILE} -n
