@@ -8,7 +8,7 @@ EXPOSE 143/tcp
 WORKDIR /protonmail
 
 # Copy bash scripts
-COPY gpgparams install.sh entrypoint.sh VERSION deb/protonmail-bridge_3.2.0-1_amd64.deb /protonmail/
+COPY gpgparams install.sh entrypoint.sh VERSION  /protonmail/
 
 # Install dependencies and protonmail bridge
 RUN bash install.sh
