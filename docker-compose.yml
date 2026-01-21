@@ -16,6 +16,6 @@ services:
 
 networks: 
   default: 
-    name: protonmail_bridge
+    name: protonmail_bridge_net
 volumes:
   protonmail-store:
