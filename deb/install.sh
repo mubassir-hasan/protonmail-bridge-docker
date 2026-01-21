@@ -1,36 +1,36 @@
 #!/bin/bash
-
 set -ex
-
-VERSION=`cat VERSION`
-DEB_FILE=protonmail-bridge_${VERSION}_amd64.deb
-
-# Install dependents
-apt-get update
-apt-get install -y --no-install-recommends socat pass ca-certificates
-
-# Build time dependencies
-apt-get install -y wget binutils xz-utils
 
 # Repack deb (remove unnecessary dependencies)
 mkdir deb
+wget -i /PACKAGE -O /deb/protonmail.deb
 cd deb
-wget -q https://protonmail.com/download/bridge/${DEB_FILE}
-ar x -v ${DEB_FILE}
-mkdir control
-tar zxvf control.tar.gz -C control
-sed -i "s/^Depends: .*$/Depends: libgl1, libc6, libsecret-1-0, libstdc++6, libgcc1/" control/control
-cd control
-tar zcvf ../control.tar.gz .
-cd ../
-ar rcs -v ${DEB_FILE} debian-binary control.tar.gz data.tar.gz
-cd ../
+ar x -v protonmail.deb
 
-# Install protonmail bridge
-apt-get install -y --no-install-recommends ./deb/${DEB_FILE}
+# Handle both .gz and .xz compression formats
+if [ -f control.tar.xz ]; then
+    CONTROL_TAR=control.tar.xz
+    tar xvf control.tar.xz -C .
+elif [ -f control.tar.gz ]; then
+    CONTROL_TAR=control.tar.gz
+    tar xvf control.tar.gz -C .
+elif [ -f control.tar.zst ]; then
+    CONTROL_TAR=control.tar.zst
+    tar xvf control.tar.zst -C .
+fi
 
-# Cleanup
-apt-get purge -y wget binutils xz-utils
-apt-get autoremove -y
-rm -rf /var/lib/apt/lists/*
-rm -rf deb
+sed -i "s/^Depends: .*$/Depends: libgl1, libc6, libsecret-1-0, libstdc++6, libgcc1/" control
+
+# Repack control with same format
+if [ -f control.tar.xz ]; then
+    tar cvJf control.tar.xz control
+elif [ -f control.tar.gz ]; then
+    tar cvzf control.tar.gz control
+elif [ -f control.tar.zst ]; then
+    tar --zstd -cvf control.tar.zst control
+fi
+
+# Find data tar (could be .xz, .gz, or .zst)
+DATA_TAR=$(ls data.tar.* 2>/dev/null | head -1)
+
+ar rcs /protonmail.deb debian-binary control.tar.* $DATA_TAR

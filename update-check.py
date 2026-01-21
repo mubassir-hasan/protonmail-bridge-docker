@@ -4,7 +4,7 @@ import requests
 import json
 import re
 
-is_pull_request = sys.argv[1] == "true"
+is_pull_request = len(sys.argv) > 1 and sys.argv[1] == "true"
 print(f"is_pull_request={is_pull_request}")
 
 

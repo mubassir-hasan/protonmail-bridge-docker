@@ -2,6 +2,10 @@
 
 set -ex
 
+# Start dbus and gnome-keyring
+export $(dbus-launch)
+echo "" | gnome-keyring-daemon --unlock --components=secrets
+
 # Initialize
 if [[ $1 == init ]]; then
 
