@@ -38,9 +38,27 @@ docker compose down
 
 # View logs
 docker compose logs -f protonmail-bridge
+```
 
-# Access Bridge CLI
-docker compose exec protonmail-bridge protonmail-bridge --cli
+## Access Bridge CLI
+
+To use the CLI while the container is running, you need to kill the running bridge process first:
+
+```bash
+# Exec into the container
+docker compose exec protonmail-bridge bash
+
+# Kill the running bridge process
+pkill bridge
+
+# Start CLI manually
+protonmail-bridge --cli
+```
+
+After exiting the CLI, restart the container:
+
+```bash
+docker compose restart protonmail-bridge
 ```
 
 ## Ports
@@ -60,3 +78,8 @@ docker compose exec protonmail-bridge protonmail-bridge --cli
 ## Data
 
 Credentials are stored in the `protonmail-store` Docker volume.
+
+## Testing
+
+```swaks --to recipient@example.com --from your-protonmail@protonmail.com --server 127.0.0.1:1028 --auth --auth-user your-protonmail@protonmail.com --auth-password YOUR_BRIDGE_PASSWORD
+```
