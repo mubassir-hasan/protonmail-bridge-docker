@@ -81,5 +81,34 @@ Credentials are stored in the `protonmail-store` Docker volume.
 
 ## Testing
 
-```swaks --to recipient@example.com --from your-protonmail@protonmail.com --server 127.0.0.1:1028 --auth --auth-user your-protonmail@protonmail.com --auth-password YOUR_BRIDGE_PASSWORD
+```bash
+swaks --to recipient@example.com --from your-protonmail@protonmail.com --server 127.0.0.1:1028 --auth --auth-user your-protonmail@protonmail.com --auth-password YOUR_BRIDGE_PASSWORD
 ```
+
+## Installation (on your Ubuntu server)
+
+```bash
+cd /home/cicd_user/protonmail-bridge-docker
+sudo bash install-monitor-service.sh
+Management Commands
+```
+
+## Check status
+
+`systemctl status protonmail-monitor`
+
+## View live logs
+
+`journalctl -u protonmail-monitor -f`
+
+## Stop/Start/Restart
+
+```bash
+systemctl stop protonmail-monitor
+systemctl start protonmail-monitor
+systemctl restart protonmail-monitor
+```
+
+## Disable autostart
+
+`systemctl disable protonmail-monitor`
