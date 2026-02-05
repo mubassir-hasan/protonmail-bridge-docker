@@ -1,0 +1,21 @@
+[Unit]
+Description=Protonmail Bridge Container Monitor
+Documentation=https://github.com/shenxn/protonmail-bridge-docker
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=cicd_user
+Group=docker
+ExecStart=/usr/local/bin/protonmail-monitor.sh
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Environment
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+[Install]
+WantedBy=multi-user.target
