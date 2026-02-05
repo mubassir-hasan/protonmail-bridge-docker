@@ -38,6 +38,10 @@ if [[ $1 == init ]]; then
 
 else
 
+    # Clean up stale lock files from previous runs
+    rm -f /root/.cache/protonmail/bridge-v3/*.lock 2>/dev/null || true
+    rm -f "/root/.cache/Proton AG/bridge-v3"/*.lock 2>/dev/null || true
+
     # socat will make the conn appear to come from 127.0.0.1
     # ProtonMail Bridge currently expects that.
     # It also allows us to bind to the real ports :)
