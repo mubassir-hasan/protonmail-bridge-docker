@@ -1,3 +1,6 @@
 # Ignoring IDE-specific files
 .idea/*
 .vscode
+
+# Sensitive credentials extracted from bridge
+credentials/

@@ -50,8 +50,10 @@ else
 
     # Start protonmail
     # Fake a terminal, so it does not quit because of EOF...
+    # Use a loop so that when a pipe writer disconnects (EOF), cat restarts
+    # and the bridge CLI keeps running without interruption.
     rm -f faketty
     mkfifo faketty
-    cat faketty | protonmail-bridge --cli
+    while true; do cat faketty; done | protonmail-bridge --cli
 
 fi
