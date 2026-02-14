@@ -38,6 +38,9 @@ if [[ $1 == init ]]; then
 
 else
 
+    # Ensure cache directories exist
+    mkdir -p /root/.cache/protonmail/bridge-v3/unleash_startup_cache
+
     # Clean up stale lock files from previous runs
     rm -f /root/.cache/protonmail/bridge-v3/*.lock 2>/dev/null || true
     rm -f "/root/.cache/Proton AG/bridge-v3"/*.lock 2>/dev/null || true

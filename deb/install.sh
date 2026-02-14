@@ -19,7 +19,7 @@ elif [ -f control.tar.zst ]; then
     tar xvf control.tar.zst -C .
 fi
 
-sed -i "s/^Depends: .*$/Depends: libgl1, libc6, libsecret-1-0, libstdc++6, libgcc1/" control
+sed -i "s/^Depends: .*$/Depends: libgl1, libc6, libsecret-1-0, libfido2-1, libstdc++6, libgcc1/" control
 
 # Repack control with same format
 if [ -f control.tar.xz ]; then

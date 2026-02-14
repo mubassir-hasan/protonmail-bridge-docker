@@ -8,7 +8,7 @@ COPY PACKAGE /
 RUN apt-get update && apt-get install -y wget binutils
 
 # Fix Windows line endings and run install script
-RUN sed -i 's/\r$//' /install.sh && bash /install.sh
+RUN sed -i 's/\r$//' /install.sh /PACKAGE && bash /install.sh
 
 FROM debian:sid-slim
 LABEL maintainer="Simon Felding <sife@adm.ku.dk>"
@@ -26,7 +26,7 @@ COPY --from=build /protonmail.deb /tmp/protonmail.deb
 RUN sed -i 's/\r$//' /protonmail/entrypoint.sh
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends /tmp/protonmail.deb socat pass libsecret-1-0 ca-certificates procps dbus dbus-x11 gnome-keyring \
+    && apt-get install -y --no-install-recommends /tmp/protonmail.deb socat pass libsecret-1-0 libfido2-1 ca-certificates procps dbus dbus-x11 gnome-keyring \
     && rm -rf /var/lib/apt/lists/*
 
 CMD ["bash", "/protonmail/entrypoint.sh"]
